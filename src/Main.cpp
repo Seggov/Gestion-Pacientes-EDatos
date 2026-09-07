@@ -1,10 +1,9 @@
-
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-
+Hospital hospital = new Hospital();
 
 void main(){
 
@@ -45,7 +44,7 @@ void lecturaInput()
 
         // le hacemos la linea con split de (";")
         cout << linea << endln;
-        
+
     }
 
 
