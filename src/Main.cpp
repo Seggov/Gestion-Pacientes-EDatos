@@ -2,10 +2,16 @@
 #include <string>
 
 using namespace std;
+#include "Hospital.h"
+#include "Persona.h"
+#include "Estructura.h"
 
-Hospital hospital = new Hospital();
+
+
 
 void main(){
+    Hospital hospital;
+    Estructura estru; 
 
     lecturaInput();
     menu();
@@ -35,23 +41,16 @@ void lecturaInput()
 {
     ifstream archivo("datos.txt");
     string linea;
-
     if(!archivo.is_open()){
         cout << "no se puede abrir" << endl;
     }
-
     while (getline(archivo,linea)){
-
         // le hacemos la linea con split de (";")
         cout << linea << endln;
-
     }
 
-
     archivo.close();
-    return 0;
-
-
+    return 0; // termino correctamente
 }
 
 void exportarHistorial()
