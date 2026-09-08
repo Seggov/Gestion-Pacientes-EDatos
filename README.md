@@ -11,6 +11,7 @@ Sistema básico de gestión de pacientes del hospital Marmaja, desarrollado en C
 
 ## Arquitectura de Carpetas
 
+```text
 Gestion-Pacientes-EDatos/
 ├── data/
 │   └── data.txt
