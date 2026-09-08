@@ -53,3 +53,22 @@ void lecturaInput()
 
 
 }
+
+void exportarHistorial()
+{
+    ofstream salida("historialPacientes.txt");
+    if (!salida.is_open()){
+    cerr << "No se puede crear el archivo" << endl;
+    return 1; // significa que el programa 
+    // aborto con algun tipo de error
+    // directamente lo detiene el progrma
+    }
+    
+    // if condicion si los nodos que los contienen dicen que ya pasaron
+    salida << "Nombre,Edad,Profesion" << endl;
+    
+
+    salida.close();
+    cout << "Archivo exportado con exito" << endl;
+    return 0; // exito en el ciclo
+}
