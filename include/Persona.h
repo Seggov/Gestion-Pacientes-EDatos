@@ -8,7 +8,7 @@ using namespace std;
 
 class Persona {
 public:
-    // ATRIBUTOS BÁSICOS
+    // ATRIBUTOS BASICO
     string id;
     string nombre;
     int edad;
@@ -29,7 +29,7 @@ public:
         edad = _edad;
         especialidad = _esp;
     }
-
+    
     // Método mínimo para imprimir los datos
     void mostrar() {
         cout << "[" << id << "] " << nombre << " | " << edad << " anios | " << especialidad << endl;
