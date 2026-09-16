@@ -18,11 +18,11 @@ int main()
         menu();
         int user_selector = selector();
 
-        switch (user_selector)
-        {
+        switch (user_selector){
+            
         case 1:
             cout << "1";
-            break;
+            break;  
 
         case 2:
             cout << "2";
