@@ -24,6 +24,7 @@ Gestion-Pacientes-EDatos/
     ├── Main.cpp
     ├── Paciente.cpp
     └── hospital.cpp
+```
 
 ## Imagen de Como Funciona 
 
