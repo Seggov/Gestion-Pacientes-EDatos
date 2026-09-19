@@ -1,39 +1,45 @@
-#ifndef PERSONA_H
-#define PERSONA_H
+#include "../include/Paciente.h"
 
-#include <iostream>
-#include <string>
+// constructor vacio que llama al padre
+Paciente::Paciente() : Persona(), servicio("") {}
 
-using namespace std;
+// constructor con datos llamando a persona
+Paciente::Paciente(string id, string nombre, int edad, string servicio)
+    : Persona(id, nombre, edad), servicio(servicio) {}
 
-class Persona {
-public:
-    // ATRIBUTOS BÁSICOS
-    string id;
-    string nombre;
-    int edad;
-    string especialidad;
+// destructor
+Paciente::~Paciente() {}
 
-    // 1. Constructor vacío por defecto (para poder crear variables vacías)
-    Persona() {
-        id = "";
-        nombre = "";
-        edad = 0;
-        especialidad = "";
-    }
+// devuelve el servicio
+string Paciente::getServicio() const {
+    return servicio;
+}
 
-    // 2. Constructor con parámetros: inicializa la persona con sus datos reales
-    Persona(string _id, string _nombre, int _edad, string _esp) {
-        id = _id;
-        nombre = _nombre;
-        edad = _edad;
-        especialidad = _esp;
-    }
+// muestra los datos completos
+void Paciente::mostrar() const {
+    cout << "[" << id << "] " << nombre << " | " << edad << " anios | " << servicio << endl;
+}
 
-    // Método mínimo para imprimir los datos
-    void mostrar() {
-        cout << "[" << id << "] " << nombre << " | " << edad << " anios | " << especialidad << endl;
-    }
-};
+// out para la cola de espera
+void Paciente::mostrarEnFila(int correlativo) const {
+    cout << correlativo << ". " << id << " - " << nombre << endl;
+}
 
-#endif
+// out para cuando se atiende
+void Paciente::mostrarEnAtencion() const {
+    cout << "ID: " << id << endl;
+    cout << "Nombre: " << nombre << endl;
+    cout << "Edad: " << edad << endl;
+    cout << "Servicio: " << servicio << endl;
+    cout << "Paciente enviado a " << servicio << "." << endl;
+}
+
+// out de departamento
+void Paciente::mostrarEnDepartamento() const {
+    cout << nombre << " (" << edad << ")" << endl;
+}
+
+// out del historial
+void Paciente::mostrarEnHistorial() const {
+    cout << "Nombre: " << nombre << " | Edad: " << edad << " | Departamento: " << servicio << endl;
+}
