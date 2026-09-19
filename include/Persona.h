@@ -6,34 +6,31 @@
 
 using namespace std;
 
+// definicion de clase base persona
 class Persona {
-public:
-    // ATRIBUTOS BASICO
+protected:
+    // datos basicos de persona
     string id;
     string nombre;
     int edad;
-    string especialidad;
 
-    // 1. Constructor vacío por defecto (para poder crear variables vacías)
-    Persona() {
-        id = "";
-        nombre = "";
-        edad = 0;
-        especialidad = "";
-    }
+public:
+    // constructor vacio
+    Persona();
 
-    // 2. Constructor con parámetros: inicializa la persona con sus datos reales
-    Persona(string _id, string _nombre, int _edad, string _esp) {
-        id = _id;
-        nombre = _nombre;
-        edad = _edad;
-        especialidad = _esp;
-    }
-    
-    // Método mínimo para imprimir los datos
-    void mostrar() {
-        cout << "[" << id << "] " << nombre << " | " << edad << " anios | " << especialidad << endl;
-    }
+    // constructor con datos
+    Persona(string id, string nombre, int edad);
+
+    // destructor virtual para la herencia
+    virtual ~Persona();
+
+    // getters de los datos
+    string getId() const;
+    string getNombre() const;
+    int getEdad() const;
+
+    // out para mostrar
+    virtual void mostrar() const;
 };
 
 #endif
