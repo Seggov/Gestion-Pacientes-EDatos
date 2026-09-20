@@ -12,14 +12,6 @@
 
 ---
 
-## Descripción del Proyecto
-Sistema básico de gestión y derivación hospitalaria desarrollado en **C++** bajo el paradigma de **Programación Orientada a Objetos (POO)** y **manejo manual de memoria dinámica con punteros**. 
-
-El sistema implementa estructuras de datos lineales desde cero (sin el uso de la biblioteca estándar STL como `vector`, `list`, `queue` o `stack`), cumpliendo con el flujo:
-$$\text{Archivo de texto} \longrightarrow \text{Cola de Espera (Queue FIFO)} \longrightarrow \text{Atención y Derivación (Lista Enlazada)} \longrightarrow \text{Historial (Stack LIFO)}$$
-
----
-
 ## Arquitectura de Carpetas
 
 ```text

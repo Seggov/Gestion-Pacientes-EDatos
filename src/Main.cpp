@@ -23,7 +23,7 @@ int main() {
     while (!esTerminado) {
         menu();
         int user_selector = selector();
-
+        // a,b,c,d - d
         switch (user_selector) {
             // opcion atender
             case 1: {

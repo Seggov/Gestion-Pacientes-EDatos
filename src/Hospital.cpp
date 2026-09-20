@@ -29,7 +29,6 @@ Hospital::Hospital() {
 // destructor
 Hospital::~Hospital() {}
 
-// inicializa los departamentos con aritmetica de punteros
 void Hospital::inicializarServicios() {
     string catalogo[TOTAL_SERVICIOS] = {
         "Urgencias", "Medicina General", "Cardiologia", "Neurologia",
@@ -137,7 +136,7 @@ bool Hospital::cargarPacientes(string ruta) {
         if (!parsearLinea(linea, id, nombre, edad, serv)) continue;
         if (!esServicioValido(serv, servOficial)) continue;
 
-        // revisa si ya existe
+        // si ya existe
         if (colaEspera.existe(id) || servicios.existePaciente(id)) continue;
 
         Paciente p(id, nombre, edad, servOficial);
