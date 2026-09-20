@@ -1,96 +1,107 @@
 #include <iostream>
 #include <string>
-#include <fstream>
+#include <limits>
+#include "../include/Hospital.h"
 
 using namespace std;
 
-int selector();
+// prototipos para el menu
 void menu();
-int lecturaInput();
-int exportarHistorial();
+int leerNumero();
+int selector();
 
-int main()
-{
-    lecturaInput();
+int main() {
+    Hospital hospital;
+
+    // carga inicial de pacientes
+    cout << "Iniciando sistema Hospital Marmaja..." << endl;
+    hospital.cargarPacientes("data/data.txt");
+
     bool esTerminado = false;
-    while (!esTerminado)
-    {
+
+    // ciclo del menu
+    while (!esTerminado) {
         menu();
         int user_selector = selector();
 
-        switch (user_selector){
-            
-        case 1:
-            cout << "1";
-            break;  
+        switch (user_selector) {
+            // opcion atender
+            case 1: {
+                hospital.mostrarCola();
+                if (hospital.getCantidadEnEspera() > 0) {
+                    cout << "\nIndique la cantidad de pacientes a atender: ";
+                    int cant = leerNumero();
+                    hospital.atenderPacientes(cant);
+                }
+                break;
+            }
 
-        case 2:
-            cout << "2";
+            // opcion ver departamentos
+            case 2: {
+                hospital.mostrarDepartamentos();
+                cout << "\nSeleccionar opcion: ";
+                int depto = leerNumero();
+                hospital.mostrarEstadoDepartamento(depto);
+                break;
+            }
 
-            break;
+            // opcion revisar historial
+            case 3: {
+                hospital.mostrarHistorial();
+                break;
+            }
+
+            // opcion salir
+            case 4: {
+                cout << "\nHasta luego :D." << endl;
+                esTerminado = true;
+                break;
+            }
+
+            // opcion buscar
+            case 5: {
+                cout << "\nIngrese el ID o Nombre a buscar: ";
+                string criterio;
+                getline(cin, criterio);
+                hospital.buscarPaciente(criterio);
+                break;
+            }
+
+            // caso default
+            default: {
+                cout << "\nOpcion no valida. Intente nuevamente." << endl;
+                break;
+            }
         }
-        esTerminado = false;
     }
 
     return 0;
 }
 
-int selector()
-{
-    int aux = 1; // por defecto visuliza el historial
-    cout << "Ingresa tu Opcion: ";
-    try
-    {
-        cin >> aux; // INP menu
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    return aux;
+// inputs para el menu por consola
+void menu() {
+    cout << "\n=== HOSPITAL MARMAJA ===" << endl;
+    cout << "1. Atender pacientes" << endl;
+    cout << "2. Ver departamento" << endl;
+    cout << "3. Revisar historial de atención" << endl;
+    cout << "4. Salir" << endl;
+    cout << "5. Buscar paciente" << endl;
 }
 
-void menu()
-{
-    string opciones = "[1] Visualizar el Historial \n[2] Agregar Pacientes a la Fila \n";
-    cout << opciones << endl;
+// lee numero evitando errores
+int leerNumero() {
+    int valor = 0;
+    while (!(cin >> valor)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Entrada invalida. Ingrese un numero: ";
+    }
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    return valor;
 }
 
-// 001; Emilio Vargas; 62; Cardiologia
-int lecturaInput()
-{
-    ifstream archivo("datos.txt");
-    string linea;
-    if (!archivo.is_open())
-    {
-        cout << "no se puede abrir" << endl;
-    }
-    while (getline(archivo, linea))
-    {
-        // le hacemos la linea con split de (";")
-        cout << linea << endl;
-    }
-
-    archivo.close();
-    return 0; // termino correctamente
-}
-
-int exportarHistorial()
-{
-    ofstream salida("historialPacientes.txt");
-    if (!salida.is_open())
-    {
-        cerr << "No se puede crear el archivo" << endl;
-        return 1; // significa que el programa
-        // aborto con algun tipo de error
-        // directamente lo detiene el progrma
-    }
-
-    // if condicion si los nodos que los contienen dicen que ya pasaron
-    // aqui tenemos que llamar a los nodos
-    salida << "Nombre,Edad,Profesion" << endl;
-    salida.close();
-
-    cout << "Archivo exportado con exito" << endl;
-    return 0; // exito en el ciclo
+// selector de opcion
+int selector() {
+    cout << "\nSeleccionar opcion: ";
+    return leerNumero();
 }
