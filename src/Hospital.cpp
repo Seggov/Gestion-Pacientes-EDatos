@@ -78,7 +78,7 @@ bool Hospital::parsearLinea(string linea, string& id, string& nombre, int& edad,
         const char* inicioToken = ptr;
 
         // avanza hasta el separador
-        while (*ptr != '\0' && *ptr != ';' && *ptr != '|') {
+        while (*ptr != '\0' && *ptr != ';') {
             ptr++;
         }
 
@@ -93,7 +93,7 @@ bool Hospital::parsearLinea(string linea, string& id, string& nombre, int& edad,
         }
         tokenIdx++;
 
-        if (*ptr == ';' || *ptr == '|') {
+        if (*ptr == ';') {
             ptr++;
         }
     }

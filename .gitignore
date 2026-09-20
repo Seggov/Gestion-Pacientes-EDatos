@@ -1,0 +1,6 @@
+# ignora ejecutables y temporales
+*.exe
+*.o
+*.obj
+bin/
+.vscode/
