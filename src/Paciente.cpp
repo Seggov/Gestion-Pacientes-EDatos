@@ -6,7 +6,7 @@ Paciente::Paciente() : Persona(), servicio("") {}
 // constructor con datos llamando a persona
 Paciente::Paciente(string id, string nombre, int edad, string servicio)
     : Persona(id, nombre, edad), servicio(servicio) {}
-
+//int
 // destructor
 Paciente::~Paciente() {}
 
