@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Persona.h"
+#include "Estructuras.h"
 
 using namespace std;
 
@@ -52,5 +53,6 @@ struct Nodo {
         }
     }
 };
+#endif
 
 #endif
