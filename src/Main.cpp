@@ -15,7 +15,7 @@ int main() {
 
     // carga inicial de pacientes
     cout << "Iniciando sistema Hospital Marmaja..." << endl;
-    hospital.cargarPacientes("data/data.txt");
+    hospital.cargarPacientes("data/data.txt"); // verificar con "pacientes.txt"
 
     bool esTerminado = false;
 
@@ -83,7 +83,7 @@ void menu() {
     cout << "\n=== HOSPITAL MARMAJA ===" << endl;
     cout << "1. Atender pacientes" << endl;
     cout << "2. Ver departamento" << endl;
-    cout << "3. Revisar historial de atención" << endl;
+    cout << "3. Revisar historial de atencion" << endl;
     cout << "4. Salir" << endl;
     cout << "5. Buscar paciente" << endl;
 }

@@ -147,6 +147,7 @@ bool Hospital::cargarPacientes(string ruta) {
     archivo.close();
     cout << "-> Pacientes cargados en cola: " << cargados << endl;
     return cargados > 0;
+    // si no null
 }
 
 // out para la cola
