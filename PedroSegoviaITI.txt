@@ -1,5 +1,11 @@
-Pedro Segovia 
-21672694-4 
-ITI 
+ESTRUCTURA DE DATOS - TALLER 01
+Hospital Marmaja
 
-Link Repositorio : Links
+Integrante:
+- Nombre: Pedro Segovia
+- RUT: 21672694-4
+- Carrera: Ingeniería en Tecnologías de la Información
+- Usuario GitHub: Seggov
+
+Link del Repositorio:
+https://github.com/Seggov/Gestion-Pacientes-EDatos
