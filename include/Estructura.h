@@ -1,58 +1,122 @@
-#ifndef ESTRUCTURA_H
-#define ESTRUCTURA_H
+#ifndef ESTRUCTURAS_H
+#define ESTRUCTURAS_H
 
 #include <iostream>
-#include "Persona.h"
-#include "Estructuras.h"
+#include <string>
+#include "Paciente.h"
 
 using namespace std;
 
-struct Nodo {
-    Persona dato;       // La persona que esta en este turno
-    Nodo* siguiente;    // Puntero que guarda la dirección del siguiente nodo en la fila
-
-    // Constructor: guarda la persona y por defecto apunta a la NADA (nullptr)
-    Nodo(Persona p) : dato(p), siguiente(nullptr) {}
+// struct nodo para pacientes
+struct NodoPaciente {
+    Paciente dato;
+    NodoPaciente* siguiente;
+    NodoPaciente(Paciente p) : dato(p), siguiente(nullptr) {}
 };
 
-// B. LA COLA O FILA (Estructura con punteros)
-    struct Estructura {
-    Nodo* primero = nullptr; // Apunta al primer paciente de la fila (el que será atendido)
-    Nodo* ultimo = nullptr;  // Apunta al último paciente que llegó a la fila
-
-    // Función mínima: Agregar un paciente a la fila (Encolar)
-    void agregar(Persona p) {
-        // PASO 1: Reservamos memoria para el nuevo nodo con 'new'
-        // 'nuevo' tiene los datos del paciente y su 'siguiente' apunta a nullptr
-        Nodo* nuevo = new Nodo(p);
-
-        // PASO 2: ¿La fila estaba vacía?
-        if (primero == nullptr) {
-            // Si estaba vacía, el nuevo paciente es tanto el primero como el último
-            primero = nuevo;
-            ultimo = nuevo;
-        } else {
-            // Si ya había gente en la fila:
-            // 1. El que era el último ahora apunta con su 'siguiente' al nuevo
-            ultimo->siguiente = nuevo; 
-
-            // 2. Actualizamos la flecha 'ultimo' para que ahora sea el recién llegado
-            ultimo = nuevo;
-        }
-    }
-
-    // Función mínima: Recorrer y mostrar la fila
-    void mostrar() {
-        // Creamos un puntero 'auxiliar' que empieza en el primero
-        Nodo* actual = primero;
-
-        // Mientras 'actual' no llegue al final (nullptr)
-        while (actual != nullptr) {
-            actual->dato.mostrar();      // Mostramos los datos del paciente
-            actual = actual->siguiente;  // AVANZAMOS al siguiente nodo
-        }
-    }
+// struct nodo para historial
+struct NodoHistorial {
+    Paciente paciente;
+    NodoHistorial* siguiente;
+    NodoHistorial(Paciente p) : paciente(p), siguiente(nullptr) {}
 };
-#endif
+
+// cola de pacientes fifo
+class ColaPacientes {
+private:
+    NodoPaciente* front;
+    NodoPaciente* back;
+    int tamano;
+
+public:
+    ColaPacientes();
+    ~ColaPacientes();
+
+    // mete a la cola
+    void enqueue(Paciente p);
+    void encolar(Paciente p) { enqueue(p); }
+
+    // saca de la cola
+    bool dequeue(Paciente& p);
+    bool desencolar(Paciente& p) { return dequeue(p); }
+
+    // funciones basicas
+    bool isEmpty() const;
+    int size() const;
+    void mostrar() const;
+    bool existe(string id) const;
+    bool buscar(string criterio, Paciente& encontrado) const;
+};
+
+// lista enlazada de pacientes por servicio
+class ListaPacientes {
+private:
+    NodoPaciente* head;
+    int tamano;
+
+public:
+    ListaPacientes();
+    ~ListaPacientes();
+
+    // mete al final
+    void insertar(Paciente p);
+    bool isEmpty() const;
+    int size() const;
+    void mostrar() const;
+    bool existe(string id) const;
+    bool buscar(string criterio, Paciente& encontrado) const;
+};
+
+// nodo que contiene el nombre del servicio y su lista
+struct NodoServicio {
+    string nombre;
+    ListaPacientes pacientes;
+    NodoServicio* siguiente;
+    NodoServicio(string n) : nombre(n), siguiente(nullptr) {}
+};
+
+// lista principal con los departamentos
+class ListaServicios {
+private:
+    NodoServicio* head;
+    int tamano;
+
+public:
+    ListaServicios();
+    ~ListaServicios();
+
+    // agrega servicio a la lista
+    void agregarServicio(string nombre);
+    NodoServicio* buscarServicio(string nombre) const;
+    NodoServicio* obtenerPorIndice(int indice) const;
+    int size() const;
+    void mostrar() const;
+    bool agregarPacienteAServicio(string nombreServicio, Paciente p);
+    bool buscarPaciente(string criterio, Paciente& encontrado, string& servicio) const;
+    bool existePaciente(string id) const;
+};
+
+// pila lifo para el historial
+class PilaHistorial {
+private:
+    NodoHistorial* top;
+    int tamano;
+
+public:
+    PilaHistorial();
+    ~PilaHistorial();
+
+    // push al tope
+    void push(Paciente p);
+    void apilar(Paciente p) { push(p); }
+
+    // pop del tope
+    bool pop(Paciente& p);
+    bool desapilar(Paciente& p) { return pop(p); }
+
+    bool isEmpty() const;
+    int size() const;
+    void mostrar() const;
+};
 
 #endif
